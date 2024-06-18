@@ -124,6 +124,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
     if (isNaN(newDate.getTime())) {
       this.resetDate();
+      return;
     }
 
     this.ncEvent.dueDate = newDate;
@@ -186,7 +187,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
     }
   }
 
-  private adjustFontSize(): void {
+  adjustFontSize(): void {
     [
       {
         elementId: '.countdown__title',
