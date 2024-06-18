@@ -9,7 +9,6 @@
         type="text"
         [value]="ncEvent.title"
         (input)="handleNCEventTitleChange($event)"
-        placeholder=" "
       />
       <label class="countdown__input-label" for="title">Title</label>
     </div>
@@ -18,7 +17,7 @@
         class="countdown__input-elem"
         id="due_date"
         type="date"
-        [value]="ncEvent.dueDate ? (ncEvent.dueDate | date: 'yyyy-MM-dd') : ''"
+        [value]="ncEvent.dueDate ? (ncEvent.dueDate | date: 'YYYY-MM-DD') : ''"
         (change)="handleNCEventDueDateChange($event)"
       />
       <label class="countdown__input-label" for="due_date">Date</label>
