@@ -1,0 +1,28 @@
+<div class="countdown">
+  <h1 class="countdown__title">{{ title }}</h1>
+  <p class="countdown__remaining">{{ remaining }}</p>
+  <form class="countdown__form">
+    <div class="countdown__input">
+      <input
+        class="countdown__input-elem"
+        id="title"
+        type="text"
+        [value]="ncEvent.title"
+        (input)="handleNCEventTitleChange($event)"
+        placeholder=" "
+      />
+      <label class="countdown__input-label" for="title">Title</label>
+    </div>
+    <div class="countdown__input">
+      <input
+        class="countdown__input-elem"
+        id="due_date"
+        type="date"
+        [value]="ncEvent.dueDate ? (ncEvent.dueDate | date: 'yyyy-MM-dd') : ''"
+        (change)="handleNCEventDueDateChange($event)"
+      />
+      <label class="countdown__input-label" for="due_date">Date</label>
+    </div>
+    <button class="countdown__clear_btn" type="button" (click)="handleClear()">Clear Event</button>
+  </form>
+</div>

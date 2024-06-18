@@ -1,0 +1,122 @@
+$primary-color: #72035d;
+$text-color: #000000;
+$input-width: 17.375rem;
+$form-gap-pc: 1.25rem;
+$form-gap-mobile: 2.5rem;
+$form-width: calc($input-width * 2);
+$form-width-pc: calc($form-width + $form-gap-pc);
+$form-width-mobile: $input-width;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin text-style($text-size, $color) {
+  font-size: $text-size;
+  color: $color;
+}
+
+.countdown {
+  @include flex-center;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100vw;
+  text-align: center;
+  gap: $form-gap-mobile;
+
+  @media screen and (orientation: landscape) {
+    gap: $form-gap-pc;
+  }
+
+  .countdown__title {
+    @include text-style(4.1875rem, $primary-color);
+  }
+
+  .countdown__remaining {
+    @include text-style(4.625rem, $text-color);
+  }
+
+  .countdown__title,
+  .countdown__remaining {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+
+  .countdown__form {
+    display: grid;
+    gap: $form-gap-mobile;
+    width: $form-width-mobile;
+    margin-top: 1.25rem;
+    place-items: center;
+
+    @media screen and (orientation: landscape) {
+      gap: $form-gap-pc;
+      width: $form-width-pc;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .countdown__clear_btn {
+    width: 48%;
+    padding: 0.625rem 1.25rem;
+    background-color: $primary-color;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #f5f3f3;
+
+    @media screen and (orientation: landscape) {
+      width: 25%;
+      grid-column: span 2;
+    }
+  }
+
+  .countdown__input {
+    @include flex-center;
+    position: relative;
+    width: $input-width;
+    height: 3.375rem;
+    margin: 0 auto;
+  }
+
+  .countdown__input-label {
+    position: absolute;
+    top: 0;
+    left: 0.625rem;
+    background: #f5f3f3;
+    padding: 0 0.375rem;
+    z-index: 1;
+    font-size: 1.5rem;
+    transform: translateY(44%);
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .countdown__input-elem {
+    padding: 0.625rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+    font-size: 1.5rem;
+    background: transparent;
+    outline-width: 0rem;
+
+    &:focus {
+      border-color: $primary-color;
+    }
+
+    &:focus + .countdown__input-label,
+    &:not(:placeholder-shown) + .countdown__input-label {
+      top: -1.625rem;
+      font-size: 1.25rem;
+      color: $primary-color;
+    }
+  }
+}
