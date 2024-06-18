@@ -37,8 +37,8 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.updateRemaining();
-    this.tickId = window.setInterval(() => this.updateRemaining(), 1000);
     this.adjustFontSize();
+    this.startInterval();
   }
 
   ngOnDestroy(): void {
@@ -50,6 +50,12 @@ export class CountdownComponent implements OnInit, OnDestroy {
   get title(): string {
     const { title } = this.ncEvent;
     return title ? `Time to ${title}` : 'Enter Event Title';
+  }
+
+  startInterval() {
+    if (!this.ncEvent.dueDate) return; // Check if there's a due date before starting
+
+    this.tickId = window.setInterval(() => this.updateRemaining(), 1000);
   }
 
   calculateRemainingTime(dueDate: Date): {
@@ -123,6 +129,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
     this.ncEvent.dueDate = newDate;
     saveNCEventDueDate(newDate);
     this.updateRemaining();
+    this.startInterval();
   }
 
   handleClear(): void {
@@ -131,6 +138,9 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
     deleteNCEvent();
     this.adjustFontSize();
+
+    if (!this.tickId) return;
+    clearInterval(this.tickId);
   }
 
   @HostListener('window:resize')
