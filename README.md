@@ -13,3 +13,14 @@ This project is straightforward. Install the dependencies and start the developm
 ## Live
 
 Visit it [live](https://charleserious.github.io/FrontendChallenge/)
+
+## Further improvements
+
+1. Accessibility: Ensure the inputs and displays are accessible to all users.
+2. Responsive Design: Enhance styles for better responsive behavior.
+3. Error Handling: Add validation and error messages for input fields.
+4. User Interface: Improve the UI using Angular Material or other UI libraries.
+5. Optimize Performance: Minimize the number of DOM manipulations.
+6. Security: Ensure inputs are sanitized to prevent security vulnerabilities.
+7. Documentation: Add comments and documentation for maintainability.
+8. Deployment: Configure CI/CD pipelines for automated testing and deployment.
